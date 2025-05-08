@@ -1,12 +1,15 @@
 # Software IPREV-Santos
 
-Trabalho desenvolvido para o Projeto Integrador da UNIVESP na disciplina Projeto Integrador em Computação I, DRP02, Turma 001, Grupo 006.
+Trabalho desenvolvido para o Projeto Integrador da UNIVESP na disciplina Projeto Integrador em Computação III, DRP02, Turma 001, Grupo 006.
 <br><br><br>
 
 ## Descrição
 
 O projeto foi desenvolvido como parte do Projeto Integrador em Computação I na UNIVESP. Ele visa o desenvolvimento de ferramenta em Framework WEB que possibilite o cálculo da correção monetária em processos judiciais dentro um órgão público (IPREV-Santos), buscando promover a celeridade e a segurança dos mesmos.
 <br><br><br>
+
+## Bagdes
+[![CI - Testes e Deploy](https://github.com/gonzae82/iPrevSantos-P3/actions/workflows/ci.yml/badge.svg)](https://github.com/gonzae82/iPrevSantos-P3/actions/workflows/ci.yml)
 
 ## Tecnologias utilizadas
 <div>
