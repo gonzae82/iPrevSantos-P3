@@ -2,9 +2,9 @@ name: CI - Testes e Deploy
 
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
   pull_request:
-    branches: [ develop ]
+    branches: [develop]
 
 jobs:
   build:
@@ -27,33 +27,38 @@ jobs:
           --health-retries=3
 
     steps:
-      - name: Checkout código
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Configurar PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: mbstring, pdo, mysqli
-          tools: composer, phpunit
+          extensions: mysqli
+          coverage: xdebug
 
-      - name: Instalar dependências
-        run: composer install
-
-      - name: Esperar o MySQL iniciar
+      - name: Wait for MySQL to be ready
         run: |
-          for i in {1..30}; do
-            if mysqladmin ping -h "127.0.0.1" -u gonzae -psiaemicr > /dev/null 2>&1; then
-              echo "MySQL está pronto!"
-              break
-            fi
-            echo "Aguardando o MySQL..."
-            sleep 2
+          sudo apt-get install -y mysql-client
+          until mysql -h 127.0.0.1 -u gonzae -psiaemicr -e "SELECT 1" gonzae_processos_judiciais; do
+            echo "Aguardando MySQL..."
+            sleep 5
           done
 
-      - name: Criar tabelas no MySQL
-        run: |
-          mysql -h 127.0.0.1 -u gonzae -psiaemicr gonzae_processos_judiciais < scripts/setup.sql
+      - name: Setup database schema
+        run: mysql -h 127.0.0.1 -u gonzae -psiaemicr gonzae_processos_judiciais < scripts/setup.sql
 
-      - name: Rodar testes
-        run: ./vendor/bin/phpunit testes
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse
+
+      - name: Run PHPUnit with coverage
+        run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml testes
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.xml
