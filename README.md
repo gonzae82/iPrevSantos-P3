@@ -38,10 +38,11 @@ O projeto foi desenvolvido como parte do Projeto Integrador em Computação I na
 - Rafael Fachini Moratelli
 - Vinicius Gonçalves Gouveia
 - Lourival Rodrigues de Carvalho Junior 
+- Paulo Sérgio de Oliveira
 
 <br><br><br>
 
 ## Orientadora
 
-Lucelma Maria dos Santos Cunha
+Karina Cristina Chiari
 <br><br>

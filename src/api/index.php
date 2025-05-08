@@ -8,8 +8,8 @@ $request = $_SERVER['REQUEST_URI'];
 $request = parse_url($request, PHP_URL_PATH);
 
 // Ajuste este path conforme a estrutura da URL
-$basePath = '/projetos/iPrev/iPrev-P3/__dev__/src/api';
-//$basePath = '/projetos/iprev/p3/src/api';
+//$basePath = '/projetos/iPrev/iPrev-P3/__dev__/src/api';
+$basePath = '/projetos/iprev/p3/src/api';
 $route = str_replace($basePath, '', $request);
 
 // Divide a rota para identificar o endpoint e os parâmetros
