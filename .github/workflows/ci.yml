@@ -2,30 +2,58 @@ name: CI - Testes e Deploy
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: gonzae_processos_judiciais
+          MYSQL_USER: gonzae
+          MYSQL_PASSWORD: siaemicr
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - name: Checkout código
+        uses: actions/checkout@v3
 
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          extensions: mbstring, pdo, pdo_mysql
-          coverage: xdebug
+          extensions: mbstring, pdo, mysqli
+          tools: composer, phpunit
 
       - name: Instalar dependências
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install
 
-      - name: Executar testes PHPUnit
-        run: vendor/bin/phpunit --coverage-text
+      - name: Esperar o MySQL iniciar
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h "127.0.0.1" -u gonzae -psiaemicr > /dev/null 2>&1; then
+              echo "MySQL está pronto!"
+              break
+            fi
+            echo "Aguardando o MySQL..."
+            sleep 2
+          done
+
+      - name: Criar tabelas no MySQL
+        run: |
+          mysql -h 127.0.0.1 -u gonzae -psiaemicr gonzae_processos_judiciais < scripts/setup.sql
+
+      - name: Rodar testes
+        run: ./vendor/bin/phpunit testes
