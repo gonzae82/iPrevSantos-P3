@@ -23,7 +23,7 @@ include 'assets/db.php';
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="../public/css/estilo.css">
 
 </head>
 
@@ -36,7 +36,7 @@ include 'assets/db.php';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img class="navbar-brand" src="img/iprevsantos.png">
+                <img class="navbar-brand" src="../public/img/iprevsantos.png">
                 <a class="navbar-brand" href="dashboard.php?dir=views&file=home">iPrev - Santos</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">

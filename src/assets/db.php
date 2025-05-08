@@ -1,6 +1,6 @@
 <?php
 // Carregar o autoloader do Composer
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 // Carregar as variáveis de ambiente
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -34,4 +34,8 @@ $mysqli->set_charset("utf8");
 if ($mysqli->connect_errno) {
     return "Erro ao conectar a base de dados: " . $mysqli->connect_error;
     exit();
+}
+
+function getDbConnection() {
+    return new mysqli($servidor, $usuario, $senha, $db);
 }

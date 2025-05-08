@@ -3,7 +3,9 @@
 Edita o usuário selecionado e exibe os dados do usuário selecionado.
 */
 // Iniciar a sessão
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 //Verifica se o id do usuário foi passado pela URL, caso não haja, redireciona para a página de listagem de usuários
 if (isset($_GET['id'])) {

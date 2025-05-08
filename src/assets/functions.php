@@ -10,3 +10,8 @@ function converteValor($valor) {
     // Retorna o valor como float
     return (float)$valor;
 }
+
+function periodoToInt($periodo) {
+    list($ano, $mes) = explode('-', $periodo);
+    return (int)$ano * 100 + (int)$mes;
+}

@@ -21,19 +21,21 @@ O projeto foi desenvolvido como parte do Projeto Integrador em Computação I na
 
 ## Disciplina
 
-- **Nome**: Projeto Integrador em Computação I - DRP02 
-- **Turma**: 001 - Projeto Integrador em Computação I - Grupo: 006
+- **Nome**: Projeto Integrador em Computação III - DRP02 
+- **Turma**: 001 - Projeto Integrador em Computação III - Grupo: 005
+
 <br><br><br>
 
 ## Participantes
 
-- Dayane da Silva
 - Diana Keli Rufino da Silva
 - Francieli Brito da Silva Luchetta
 - Maria José de Oliveira Peres
 - Michele da Silva Luchetta Assunção
 - Rafael Fachini Moratelli
 - Vinicius Gonçalves Gouveia
+- Lourival Rodrigues de Carvalho Junior 
+
 <br><br><br>
 
 ## Orientadora
