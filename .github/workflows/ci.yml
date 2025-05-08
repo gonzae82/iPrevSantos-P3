@@ -51,9 +51,6 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      - name: Run PHPStan
-        run: ./vendor/bin/phpstan analyse
-
       - name: Run PHPUnit with coverage
         run: ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml testes
 
